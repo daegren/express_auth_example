@@ -1,0 +1,121 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+html {
+  font-family: 'Helvetica', sans-serif;
+}
+
+.navbar {
+  line-height: 4em;
+  background-color: #009688;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: baseline;
+}
+
+.navbar h1 {
+  flex: 1 0;
+  margin: 0;
+  font-size: 2em;
+  color: white;
+}
+
+.navbar a {
+  flex: 0 0;
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+#container {
+  margin: 4em auto 0;
+  padding: 1em;
+}
+
+@media all and (min-width: 50em) {
+  #container {
+    width: 50em;
+  }
+}
+
+@media all and (max-width: 50em) {
+  #container {
+    width: 100%;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10%;
+}
+
+form .form-group {
+  display: flex;
+  font-size: 25px;
+}
+
+form .form-group label {
+  flex: 1 1;
+  text-align: right;
+  align-self: center;
+  padding-right: 1em;
+  font-weight: bold;
+}
+
+form .form-group input {
+  flex: 2 0;
+  margin: 0.5em 0;
+  padding: 0.5em;
+  font-size: 1em;
+}
+
+form .form-actions {
+  text-align: right;
+  padding: 1em;
+}
+
+form .form-actions input {
+  background-color: #009688;
+  color: white;
+  border: 1px solid rgba(0, 0, 0, 0.75);
+  border-radius: 0.5em;
+  font-size: 1.5em;
+  padding: 0.5em 1em;
+}
+
+.flash {
+  border: 1px solid rgba(0, 0, 0, 0.75);
+  border-radius: 0.5em;
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+}
+
+.flash.info {
+  color: #0c5460;
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+}
+
+.flash.errors {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}

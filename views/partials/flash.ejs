@@ -1,0 +1,15 @@
+<% if (info.length !== 0) { %>
+  <div class="flash info">
+    <% info.forEach(function(msg) { %>
+      <span><%= msg %></span>
+    <% }) %>
+  </div>
+<% } %>
+
+<% if (errors.length !== 0) { %>
+  <div class="flash errors">
+    <% errors.forEach(function(msg) { %>
+      <span><%= msg %></span>
+    <% }) %>
+  </div>
+<% } %>

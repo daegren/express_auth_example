@@ -1,0 +1,11 @@
+<nav class="navbar">
+  <h1><a href="/">Express Auth Example<a></h1>
+  <div class="links">
+    <% if (user.id === -1) { %>
+      <a href="/login">Login</a>
+      <a href="/register">Register</a>
+    <% } else { %>
+      <a href="/logout">Logout</a>
+    <% } %>
+  </div>
+</nav>

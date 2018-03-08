@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <% include ./partials/head %>
+  <body>
+    <% include ./partials/nav %>
+
+    <main id="container">
+      <% include ./partials/flash %>
+      <h2>Please Register</h2>
+      <form action="/register" method="POST">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input id="username" name="username" type="text" />
+        </div>
+
+        <div class="form-actions">
+          <input type="submit" value="Register" />
+        </div>
+      </form>
+    </main>
+  </body>
+</html>
