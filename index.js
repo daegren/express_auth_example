@@ -58,6 +58,10 @@ app.use((req, res, next) => {
   }
 });
 
+// Routes
+const posts = require('./routes/posts')(db);
+app.use('/posts', posts);
+
 app.get('/', (req, res) => {
   res.render('index', {
     user: req.currentUser,

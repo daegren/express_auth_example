@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <% include ../partials/head %>
+  <body>
+    <% include ../partials/nav %>
+
+    <main id="container">
+      <% include ../partials/flash %>
+      <h2>Posts</h2>
+
+      <a href="/posts/new">New Post</a>
+
+      <div class="post-container">
+        <% if (posts.length === 0) { %>
+          There are no posts yet!
+        <% } else { %>
+          <ul>
+            <% posts.forEach(function(post) { %>
+              <li><a href="/posts/<%= post.id %>"><%= post.title %></a></li>
+            <% }) %>
+          </ul>
+        <% } %>
+      </div>
+
+
+    </main>
+  </body>
+</html>

@@ -79,11 +79,16 @@ form .form-group label {
   font-weight: bold;
 }
 
-form .form-group input {
+form .form-group input,
+form .form-group textarea {
   flex: 2 0;
   margin: 0.5em 0;
   padding: 0.5em;
   font-size: 1em;
+}
+
+form .form-group textarea {
+  height: 6em;
 }
 
 form .form-actions {
