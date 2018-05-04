@@ -73,7 +73,10 @@ module.exports = db => {
     posts
       .findPost(req.params.id)
       .then(post => {
-        if (req.currentUser.id === -1 && !post.public) {
+        if (
+          (req.currentUser.id === -1 && !post.public) ||
+          post.user_id !== req.currentUser.id
+        ) {
           req.flash("info", `Post with id ${req.params.id} not found.`);
           res.redirect("/posts");
           return;
