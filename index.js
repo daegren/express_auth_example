@@ -40,7 +40,7 @@ app.use((req, res, next) => {
   };
 
   if (token) {
-    users
+    return users
       .findByToken(token)
       .then(([user]) => {
         req.currentUser = user;
@@ -48,13 +48,11 @@ app.use((req, res, next) => {
       .catch(() => {
         req.currentUser = anonUser;
       })
-      .finally(() => {
-        next();
-      });
-  } else {
-    req.currentUser = anonUser;
-    next();
+      .then(next, next);
   }
+
+  req.currentUser = anonUser;
+  next();
 });
 
 // Routes
