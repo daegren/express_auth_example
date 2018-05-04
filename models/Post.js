@@ -1,12 +1,14 @@
 module.exports = knex => {
-  const getPublicPosts = () => knex('posts').where({ public: true });
+  const getPublicPosts = () => knex("posts").where({ public: true });
+
   const getPosts = user =>
-    knex('posts')
+    knex("posts")
       .where({ public: true })
       .orWhere({ user_id: user.id });
+
   const findPost = id =>
     new Promise((resolve, reject) => {
-      knex('posts')
+      knex("posts")
         .where({ id })
         .limit(1)
         .then(([post]) => {
@@ -21,12 +23,12 @@ module.exports = knex => {
 
   const createPost = (post, user) =>
     new Promise((resolve, reject) => {
-      knex('posts')
+      knex("posts")
         .insert({
           ...post,
           user_id: user.id
         })
-        .returning('id')
+        .returning("id")
         .then(([post]) => {
           console.log(post);
           resolve(post);

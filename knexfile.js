@@ -2,18 +2,18 @@
 
 module.exports = {
   development: {
-    client: 'postgresql',
+    client: "postgresql",
     connection: {
-      database: 'express_auth_example',
-      user: 'postgres',
-      password: 'postgres'
+      database: "express_auth_example",
+      user: "postgres",
+      password: "postgres"
     },
     pool: {
       min: 2,
       max: 10
     },
     migrations: {
-      tableName: 'knex_migrations'
+      tableName: "knex_migrations"
     }
   }
 };

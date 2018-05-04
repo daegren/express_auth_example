@@ -1,35 +1,35 @@
-const uuid = require('uuid/v4');
+const uuid = require("uuid/v4");
 
 module.exports = knex => {
   const registerUser = username =>
-    knex('users')
+    knex("users")
       .insert({ username })
-      .returning('*');
+      .returning("*");
 
   const loginUser = username => findByUsername(username);
 
   const generateLoginToken = user =>
-    knex('users')
+    knex("users")
       .where({ id: user.id })
       .update({ token: uuid() })
-      .returning('*');
+      .returning("*");
 
   const find = id =>
-    knex('users')
+    knex("users")
       .where({ id })
-      .select('*')
+      .select("*")
       .limit(1);
 
   const findByUsername = username =>
-    knex('users')
+    knex("users")
       .where({ username })
-      .select('*')
+      .select("*")
       .limit(1);
 
   const findByToken = token =>
-    knex('users')
+    knex("users")
       .where({ token })
-      .select('*')
+      .select("*")
       .limit(1);
 
   return {
