@@ -43,7 +43,11 @@ app.use((req, res, next) => {
     return users
       .findByToken(token)
       .then(([user]) => {
-        req.currentUser = user;
+        if (user) {
+          req.currentUser = user;
+        } else {
+          req.currentUser = anonUser;
+        }
       })
       .catch(() => {
         req.currentUser = anonUser;
@@ -76,15 +80,15 @@ app.get("/login", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-  const { username } = req.body;
+  const { username, password } = req.body;
 
-  if (username === "") {
-    req.flash("errors", "Please provide a username");
+  if (username === "" || password === "") {
+    req.flash("errors", "Please provide a username and password");
     return res.redirect("/login");
   }
 
   users
-    .login(username)
+    .login(username, password)
     .then(user => {
       req.session.token = user.token;
       req.flash("info", "Succesfully logged in!");
@@ -112,15 +116,21 @@ app.get("/register", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-  const { username } = req.body;
+  const { username, password, password_confirm } = req.body;
 
   if (username === "") {
-    req.flash("error", "Username is required.");
+    req.flash("errors", "Username is required.");
+    return res.redirect("/register");
+  } else if (password === "" || password_confirm === "") {
+    req.flash("errors", "Password is required");
+    return res.redirect("/register");
+  } else if (password !== password_confirm) {
+    req.flash("errors", "Passwords must match");
     return res.redirect("/register");
   }
 
   users
-    .register(username)
+    .register(username, password)
     .then(user => {
       // Set the session
       req.session.token = user.token;
